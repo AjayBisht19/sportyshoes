@@ -122,4 +122,13 @@ public class AdminController {
 		model.addAttribute("report",report);
 		return "admin/report";
 	}
+
+	@PostMapping("/filtercategory")
+	public String searchByCategory(Model model,@RequestParam("cat") String category) {
+		List<Product> report = productRepository.getProductByCate(category);
+		model.addAttribute("report",report);
+		return "admin/report";
+	}
+
 }
+

@@ -37,6 +37,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	@Query("select p from Product p where p.purchaseDate =:date")
 	public List<Product> getProductByDate(@Param("date") String date);
 	
+	
+	@Query("select p from Product p where p.brand =:cate and p.user is not null")
+	public List<Product> getProductByCate(@Param("cate") String cate);
+	
 	@Query("select distinct brand from Product")
 	public List<String> getCategories();
 	
