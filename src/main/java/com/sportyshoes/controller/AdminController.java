@@ -108,4 +108,11 @@ public class AdminController {
 		return "admin/report";
 	}
 
+	
+	@PostMapping("/search")
+	public String search(Model model,@RequestParam("name") String name) {
+		List<User> users = userRepository.findByName(name);
+		model.addAttribute("users",users);
+		return "admin/users";
+	}
 }
