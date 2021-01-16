@@ -115,4 +115,11 @@ public class AdminController {
 		model.addAttribute("users",users);
 		return "admin/users";
 	}
+	
+	@PostMapping("/filterdate")
+	public String searchByDate(Model model,@RequestParam("date") String date) {
+		List<Product> report = productRepository.getProductByDate(date);
+		model.addAttribute("report",report);
+		return "admin/report";
+	}
 }
