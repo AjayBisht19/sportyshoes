@@ -47,13 +47,22 @@ public class AdminController {
 	
 	@RequestMapping("/index")
 	public String dashboard(Model model) {
-		
+		List<String> categories = productRepository.getCategories();
+		System.out.println(categories);
+		model.addAttribute("categories",categories);
 		List<Product> products = productRepository.getProductByUser();
 		model.addAttribute("products",products);
 		model.addAttribute("product",new Product());
 		return "admin/admin_dashboard";
 	}
-	
+	@RequestMapping("/index/{brand}")
+	public String brand(@PathVariable("brand") String brand,Model model) {
+		List<Product> products = productRepository.getProductByCategory(brand);
+		model.addAttribute("products",products);
+		System.out.println("brand is "+products);
+		return "admin/admin_dashboard";
+	}
+
 
 	
 	@PostMapping("/addproduct")

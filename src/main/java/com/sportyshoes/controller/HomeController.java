@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sportyshoes.dao.ProductRepository;
 import com.sportyshoes.dao.UserRepository;
@@ -50,6 +52,10 @@ public class HomeController {
 			return "redirect:/login";
 		}
 		
+		List<String> categories = productRepository.getCategories();
+		System.out.println(categories);
+		model.addAttribute("categories",categories);
+		
 		String username = principal.getName();
 		System.out.println(username);
 		User user = userRepository.getUserByUserName(username);
@@ -60,6 +66,18 @@ public class HomeController {
 		return "/products/products";
 	}
 	
+	@GetMapping("/{brand}")
+	public String brand(@PathVariable("brand") String brand,Model model,Principal principal) {
+		String username = principal.getName();
+		System.out.println(username);
+		User user = userRepository.getUserByUserName(username);
+		System.out.println(user);
+		model.addAttribute(user);
+		List<Product> products = productRepository.getProductByCategory(brand);
+		model.addAttribute("products",products);
+		System.out.println("main brands are"+products.toString());
+		return "products/products";
+	}
 	
 	@GetMapping("/login")
 	public String test() {

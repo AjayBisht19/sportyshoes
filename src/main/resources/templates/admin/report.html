@@ -13,6 +13,7 @@
 	      <th scope="col">User</th>
 	      <th scope="col">ProductId</th>
 	       <th scope="col">Product Name</th>
+	       <th scope="col">Date</th>
 	   
 	    </tr>
 	  </thead>
@@ -21,6 +22,7 @@
 	      <th scope="row" th:text="${r.user.name}" ></th>
 	      <td  th:text="@{'SS'+${r.pid}}"></td>
 	      <td th:text="${r.name}"></td>
+	      <td th:text="${r.purchaseDate}"></td>
 	
 	    </tr>
 	    

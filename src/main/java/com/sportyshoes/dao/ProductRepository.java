@@ -33,5 +33,11 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	
 	@Query("select p from Product p where p.user is not null")
 	public List<Product> getProductOfUsers();
+	
+	@Query("select distinct brand from Product")
+	public List<String> getCategories();
+	
+	@Query("select p from Product p where p.brand =:brand and p.user is null")
+	public List<Product> getProductByCategory(@Param("brand") String brand);
 
 }
