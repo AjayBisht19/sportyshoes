@@ -1,6 +1,7 @@
 package com.sportyshoes.controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,6 +54,7 @@ public class UserController {
 		pro.setName(product.getName());
 		pro.setBrand(product.getBrand());
 		pro.setImageUrl(product.getImageUrl());
+		pro.setPurchaseDate(LocalDate.now().toString());
 		pro.setDescription(product.getDescription());
 		pro.setPrice(product.getPrice());
 		productRepository.save(pro);

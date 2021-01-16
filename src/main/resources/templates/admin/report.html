@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="admin/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>report</title>
+</head>
+<body>
+	<section class="mt-5 ">
+	
+	<table class="table mt-5 text-center">
+	  <thead>
+	    <tr>
+	      <th scope="col">User</th>
+	      <th scope="col">ProductId</th>
+	       <th scope="col">Product Name</th>
+	   
+	    </tr>
+	  </thead>
+	  <tbody th:each="r:${report}">
+	    <tr>
+	      <th scope="row" th:text="${r.user.name}" ></th>
+	      <td  th:text="@{'SS'+${r.pid}}"></td>
+	      <td th:text="${r.name}"></td>
+	
+	    </tr>
+	    
+	  </tbody>
+	</table>
+</ul>
+	</section>
+
+</body>
+</html>

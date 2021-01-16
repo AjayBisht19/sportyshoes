@@ -82,4 +82,21 @@ public class AdminController {
 		productRepository.deleteByDesc(p.getDescription());
 		return "redirect:/admin/index";
 	}
+	
+	@GetMapping("/users")
+	public String user(Model model) {
+		List<User> users = userRepository.findAll();
+		model.addAttribute("users",users);
+		return "admin/users";
+	}
+
+	
+	@GetMapping("/report")
+	public String report(Model model) {
+		
+		List<Product> report = productRepository.getProductOfUsers();
+		model.addAttribute("report",report);
+		return "admin/report";
+	}
+
 }

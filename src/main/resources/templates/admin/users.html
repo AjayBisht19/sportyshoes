@@ -5,10 +5,12 @@
 	<title>users list</title>
 </head>
 <body>
-	<section>
+	<section class="mt-5 ">
 	
-		list of users
-
+	<ul class="list-group text-center" th:each="e: ${users}">
+  
+  <li class="list-group-item" th:text="${e.name}"></li>
+</ul>
 	</section>
 
 </body>

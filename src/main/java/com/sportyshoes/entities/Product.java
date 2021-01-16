@@ -19,6 +19,7 @@ public class Product {
 	private String brand;
 	private String description;
 	private String imageUrl;	
+	private String purchaseDate;
 	
 	private float price;
 	@ManyToOne
@@ -72,6 +73,12 @@ public class Product {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public String getPurchaseDate() {
+		return purchaseDate;
+	}
+	public void setPurchaseDate(String purchaseDate) {
+		this.purchaseDate = purchaseDate;
 	}
 	
 	

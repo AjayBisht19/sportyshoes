@@ -30,5 +30,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	@Modifying
 	@Query("delete from Product p where p.description =:descr")
 	public void deleteByDesc(@Param("descr") String descr);
+	
+	@Query("select p from Product p where p.user is not null")
+	public List<Product> getProductOfUsers();
 
 }
