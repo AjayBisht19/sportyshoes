@@ -17,20 +17,20 @@
   
   <nav class="navbar navbar-expand-sm navbar-dark bg-custom">
   <div class="container-fluid">
-    <a class="navbar-brand ps-3" href="#"><i class="fab fa-shopify"></i> <b>Sporty Shoes</b></a>
+    <a class="navbar-brand ps-3" href="/"><i class="fab fa-shopify"></i> <b>Sporty Shoes</b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse pe-3" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" >Welcome! <span th:text="${user.name}"></span></a>
+          <a class="nav-link active me-4 text-dark" >Welcome! <span th:text="${user.name}"></span></a>
         </li>
           
           <li class="nav-item">
           <div th:switch="${user.role}">
           	<a class="nav-link active" th:case="ROLE_admin" href="/admin/index">Manage products</a>
-          	<a class="nav-link active" th:case="*" href="/user/index">profile</a>
+          	<a class="nav-link active" th:case="*" href="/user/cart">Cart</a>
          
           </div>
           

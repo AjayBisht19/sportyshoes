@@ -6,13 +6,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.security.Principal; 
+import java.security.Principal;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,6 +47,9 @@ public class AdminController {
 	
 	@RequestMapping("/index")
 	public String dashboard(Model model) {
+		
+		List<Product> products = productRepository.getProductByUser();
+		model.addAttribute("products",products);
 		model.addAttribute("product",new Product());
 		return "admin/admin_dashboard";
 	}
@@ -64,6 +71,15 @@ public class AdminController {
 		System.out.println(product);
 		System.out.println("asdf");
 		this.productRepository.save(product);
+		return "redirect:/admin/index";
+	}
+	
+	
+	@GetMapping("/delete/{pid}")
+	public String deleteitem(@PathVariable("pid") Integer pid) {
+		Optional<Product> product = productRepository.findById(pid);
+		Product p=product.get();
+		productRepository.deleteByDesc(p.getDescription());
 		return "redirect:/admin/index";
 	}
 }

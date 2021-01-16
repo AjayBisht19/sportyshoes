@@ -73,11 +73,8 @@ public class Product {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	@Override
-	public String toString() {
-		return "Product [pid=" + pid + ", name=" + name + ", brand=" + brand + ", description=" + description
-				+ ", imageUrl=" + imageUrl + ", price=" + price + ", user=" + user + "]";
-	}
+	
+	
 
 	
 	

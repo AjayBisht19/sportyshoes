@@ -23,7 +23,7 @@ public class User {
 	private String email;
 	private String password;
 	private String role;
-	private String imageUrl;
+	
 
 	@OneToMany(cascade=CascadeType.ALL,fetch= FetchType.LAZY ,mappedBy = "user")
 	private List<Product> products= new ArrayList<>();
@@ -93,23 +93,11 @@ public class User {
 	}
 
 
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
-				+ ", imageUrl=" + imageUrl + ", products=" + products + "]";
+				+ ", products=" + products + "]";
 	}
-	
-	
 	
 
 }

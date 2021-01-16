@@ -32,7 +32,21 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String products(Model model,Principal principal) {
+		
 		if(principal == null) {
+			User admin=new User();
+			admin.setName("Admin");
+			admin.setEmail("admin@gmail.com");
+			admin.setPassword(passwordEncoder.encode("admin123"));
+			admin.setRole("ROLE_admin");
+			System.out.println(admin);
+			try {
+				userRepository.save(admin);
+			} catch (Exception e) {
+				// TODO: handle exception
+				return "redirect:/login";
+			}
+			
 			return "redirect:/login";
 		}
 		
@@ -41,11 +55,8 @@ public class HomeController {
 		User user = userRepository.getUserByUserName(username);
 		System.out.println(user);
 		model.addAttribute(user);
-		List<Product> products = productRepository.findAll();
+		List<Product> products = productRepository.getProductByUser();
 		model.addAttribute("products",products);
-		System.out.println(products);
-		
-		
 		return "/products/products";
 	}
 	
@@ -80,7 +91,7 @@ public class HomeController {
 			// TODO: handle exception
 			e.printStackTrace();
 			model.addAttribute("user",user);
-			session.setAttribute("message", new Message("Something went wrong!!"+ e.getMessage(), "alert-danger"));
+			session.setAttribute("message", new Message("Something went wrong!! Try different Email", "alert-danger"));
 		}
 		
 	

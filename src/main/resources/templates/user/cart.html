@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" th:replace="user/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>User dashboard</title>
+</head>
+<body>
+	<section>
+	<table class="table mt-5 text-center">
+	  <thead>
+	    <tr>
+	      <th scope="col">ID</th>
+	      <th scope="col">Shoe</th>
+	      <th scope="col">Price</th>
+	      <th scope="col">Action</th>
+	    </tr>
+	  </thead>
+	  <tbody th:each="p:${products}">
+	    <tr>
+	      <th scope="row" th:text="@{'SS'+${p.pid}}"></th>
+	      <td th:text="${p.name}"></td>
+	      <td th:text="${p.price}"></td>
+	      <td ><a th:href="@{'/user/delete/'+${p.pid}}" class="text-danger"><i class="fas fa-trash-alt"></i></a></td>
+	    </tr>
+	    
+	  </tbody>
+	</table>
+	</section>
+
+</body>
+</html>
