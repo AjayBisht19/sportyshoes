@@ -1,6 +1,7 @@
 package com.sportyshoes.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpSession; 
 
@@ -13,8 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
+import com.sportyshoes.dao.ProductRepository;
 import com.sportyshoes.dao.UserRepository;
+import com.sportyshoes.entities.Product;
 import com.sportyshoes.entities.User;
 import com.sportyshoes.helper.Message;
 
@@ -25,14 +27,25 @@ public class HomeController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private ProductRepository productRepository;
 	
 	@GetMapping("/")
 	public String products(Model model,Principal principal) {
+		if(principal == null) {
+			return "redirect:/login";
+		}
+		
 		String username = principal.getName();
 		System.out.println(username);
 		User user = userRepository.getUserByUserName(username);
 		System.out.println(user);
 		model.addAttribute(user);
+		List<Product> products = productRepository.findAll();
+		model.addAttribute("products",products);
+		System.out.println(products);
+		
+		
 		return "/products/products";
 	}
 	

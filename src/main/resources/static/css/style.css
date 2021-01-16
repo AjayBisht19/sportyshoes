@@ -7,3 +7,7 @@ body{
 .text-custom{
 	color:#1dd1a1;
 }
+.card img{
+	height:250px;
+	object-fit:cover;
+}

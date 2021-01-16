@@ -64,6 +64,6 @@ public class AdminController {
 		System.out.println(product);
 		System.out.println("asdf");
 		this.productRepository.save(product);
-		return "admin/admin_dashboard";
+		return "redirect:/admin/index";
 	}
 }

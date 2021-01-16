@@ -101,14 +101,13 @@ public class User {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	
 
 
-	
-
-
-	
-	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
+				+ ", imageUrl=" + imageUrl + ", products=" + products + "]";
+	}
 	
 	
 	
