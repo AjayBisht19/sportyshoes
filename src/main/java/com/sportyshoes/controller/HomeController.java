@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession; 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -45,7 +46,7 @@ public class HomeController {
 			try {
 				userRepository.save(admin);
 			} catch (Exception e) {
-				// TODO: handle exception
+				System.out.println("Exception  to be handled here");
 				return "redirect:/login";
 			}
 			

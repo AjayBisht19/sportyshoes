@@ -9,15 +9,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.sportyshoes.entities.User;
 
-public class CustomUserDetails implements UserDetails{
-	
+public class CustomUserDetails implements UserDetails {
+
 	private User user;
-	
-	
-	
+
 	public CustomUserDetails(User user) {
 		super();
-		this.user=user;
+		this.user = user;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -25,8 +23,7 @@ public class CustomUserDetails implements UserDetails{
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 
 		SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(user.getRole());
-		
-		
+
 		return List.of(simpleGrantedAuthority);
 	}
 
