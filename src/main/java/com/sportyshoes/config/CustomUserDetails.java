@@ -1,6 +1,7 @@
 package com.sportyshoes.config;
 
-import java.util.Collection;
+import java.util.Arrays;
+import java.util.Collection; 
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -11,6 +12,10 @@ import com.sportyshoes.entities.User;
 
 public class CustomUserDetails implements UserDetails {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private User user;
 
 	public CustomUserDetails(User user) {
@@ -23,8 +28,8 @@ public class CustomUserDetails implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 
 		SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(user.getRole());
-
-		return List.of(simpleGrantedAuthority);
+		List<SimpleGrantedAuthority> SGA=Arrays.asList(simpleGrantedAuthority);
+		return SGA;
 	}
 
 	@Override
