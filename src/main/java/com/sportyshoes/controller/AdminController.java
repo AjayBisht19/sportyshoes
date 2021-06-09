@@ -1,6 +1,6 @@
 package com.sportyshoes.controller;
 
-import java.io.File;
+import java.io.File; 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -72,13 +72,15 @@ public class AdminController {
 		try {
 			File saveFile=new ClassPathResource("static/img").getFile();
 			Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
+			System.out.println("input stream "+file.getInputStream());
+			System.out.println("path: "+path);
 			Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println(product);
-		System.out.println("asdf");
+		
 		this.productRepository.save(product);
 		return "redirect:/admin/index";
 	}

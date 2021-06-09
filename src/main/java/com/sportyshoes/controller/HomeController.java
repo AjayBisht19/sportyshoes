@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +36,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String products(Model model,Principal principal) {
 		
-		if(principal == null) {
+		if(principal ==null) {
 			User admin=new User();
 			admin.setName("Admin");
 			admin.setEmail("admin@gmail.com");
